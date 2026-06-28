@@ -21,7 +21,7 @@
 
 ## Структура каталогов ##
 
-+ WAF_Suricata
+    WAF_Suricata
     - app
     - db
     - loki
