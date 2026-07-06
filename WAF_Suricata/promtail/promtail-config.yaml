@@ -1,0 +1,59 @@
+server:
+  http_listen_port: 9080 # server — порт, на котором Promtail слушает (для метрик).
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml # positions — файл, где хранится информация о том, до какого места прочитаны файлы (чтобы после перезапуска продолжать с того же места).
+
+clients:
+  - url: http://loki:3100/loki/api/v1/push # clients — куда отправлять логи. Здесь мы указываем Loki (контейнер с именем loki в той же сети) на порт 3100.
+
+scrape_configs:
+  # --- 1. Логи Suricata (JSON-формат) ---
+  - job_name: suricata
+    static_configs:
+      - targets: [localhost]
+        labels:
+          job: suricata
+          host: suricata
+          __path__: /var/log/suricata/*.json
+    pipeline_stages:
+      - json:
+          expressions:
+            event_type: event_type
+            src_ip: src_ip
+            dest_ip: dest_ip
+            proto: proto
+            alert: alert
+      - labels:
+          event_type: event_type
+          proto: proto
+
+  # --- 2. Логи Nginx + ModSecurity (access_log) ---
+  - job_name: nginx
+    static_configs:
+      - targets: [localhost]
+        labels:
+          job: nginx
+          host: nginx-modsec
+          __path__: /var/log/nginx/*.log
+    pipeline_stages:
+      - regex:
+          expression: '^(?P<remote_addr>\S+) - (?P<remote_user>\S+) \[(?P<time_local>.*?)\] "(?P<method>\S+) (?P<request_uri>\S+) (?P<http_version>\S+)" (?P<status>\d{3}) (?P<body_bytes_sent>\d+) "(?P<http_referer>.*?)" "(?P<http_user_agent>.*?)"'
+      - labels:
+          method: method
+          status: status
+
+  # --- 3. Логи Flask-приложения (app.log) ---
+  - job_name: app
+    static_configs:
+      - targets: [localhost]
+        labels:
+          job: app
+          host: app
+          __path__: /var/log/app/*.log
+    pipeline_stages:
+      - regex:
+          expression: '^(?P<timestamp>\S+) - (?P<level>\w+) - (?P<message>.*)$'
+      - labels:
+          level: level

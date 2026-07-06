@@ -1,0 +1,30 @@
+auth_enabled: false # отключаем аутентификацию (Для простоты, такто так делать не надо)
+
+server:
+  http_listen_port: 3100 # порт на котором loki принимает данные от promtail и отдает их Grafana.
+
+common: # настройка хранения
+  path_prefix: /loki 
+  storage:
+    filesystem:
+      chunks_directory: /loki/chunks
+      rules_directory: /loki/rules
+  replication_factor: 1
+  ring:
+    kvstore:
+      store: inmemory
+
+schema_config: # определяет схему хранения и переодичность индексов
+  configs:
+    - from: 2020-10-24
+      store: tsdb
+      object_store: filesystem
+      schema: v13
+      index:
+        prefix: index_
+        period: 24h
+
+limits_config: # ограничение на прием логов
+  allow_structured_metadata: true
+  ingestion_rate_mb: 16
+  ingestion_burst_size_mb: 32
