@@ -1,0 +1,129 @@
+version: '3.8'
+
+services:
+  # ===== СЕТЕВОЙ IDS =====
+  suricata:
+    image: jasonish/suricata:latest
+    container_name: suricata
+    restart: unless-stopped
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_NICE
+    volumes:
+      - ./suricata/suricata.yaml:/etc/suricata/suricata.yaml:ro
+      - ./suricata/rules:/var/lib/suricata/rules
+      - suricata-logs:/var/log/suricata
+    command: -i eth0
+
+  # ===== WAF (nginx + ModSecurity) =====
+  nginx-modsec:
+    image: owasp/modsecurity-crs:nginx
+    container_name: nginx-modsec
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/modsecurity.conf:/etc/nginx/modsecurity.conf:ro
+      - nginx-logs:/var/log/nginx
+    depends_on:
+      - app
+    networks:
+      - webnet
+
+  # ===== ВЕБ-ПРИЛОЖЕНИЕ (Flask) =====
+  app:
+    build: ./app
+    container_name: app
+    restart: unless-stopped
+    environment:
+      - DB_HOST=db
+      - DB_NAME=${POSTGRES_DB}
+      - DB_USER=${POSTGRES_USER}
+      - DB_PASS=${POSTGRES_PASSWORD}
+    volumes:
+      - app-logs:/var/log/app
+    depends_on:
+      - db
+    networks:
+      - webnet
+
+  # ===== БАЗА ДАННЫХ (PostgreSQL) =====
+  db:
+    image: postgres:13
+    container_name: db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - webnet
+
+  # ===== ХРАНИЛИЩЕ ЛОГОВ (Loki) =====
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    restart: unless-stopped
+    volumes:
+      - ./loki/loki-config.yaml:/etc/loki/loki-config.yaml:ro
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/loki-config.yaml
+    networks:
+      - webnet
+
+  # ===== СБОРЩИК ЛОГОВ (Promtail) =====
+  promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
+    restart: unless-stopped
+    volumes:
+      - ./promtail/promtail-config.yaml:/etc/promtail/promtail-config.yaml:ro
+      - suricata-logs:/var/log/suricata:ro
+      - nginx-logs:/var/log/nginx:ro
+      - app-logs:/var/log/app:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    command: -config.file=/etc/promtail/promtail-config.yaml
+    depends_on:
+      - loki
+    networks:
+      - webnet
+
+  # ===== ВИЗУАЛИЗАЦИЯ (Grafana) =====
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD}
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini:ro
+    depends_on:
+      - loki
+    networks:
+      - webnet
+
+# ===== ТОМА ДЛЯ ПЕРСИСТЕНТНЫХ ДАННЫХ =====
+volumes:
+  db-data:
+  suricata-logs:
+  nginx-logs:
+  app-logs:
+  grafana-data:
+
+# ===== ВНУТРЕННЯЯ СЕТЬ DOCKER =====
+networks:
+  webnet:

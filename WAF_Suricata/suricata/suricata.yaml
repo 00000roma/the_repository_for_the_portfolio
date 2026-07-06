@@ -1,0 +1,44 @@
+%YAML 1.1
+---
+vars:
+  address-groups:
+    HOME_NET: "[192.168.0.0/16,10.0.0.0/8,172.16.0.0/12]"
+    EXTERNAL_NET: "!$HOME_NET"
+  port-groups:
+    HTTP_PORTS: "80,8080,8000"
+
+af-packet:
+  - interface: eth0
+    cluster-id: 99
+    cluster-type: cluster_flow
+    defrag: yes
+    use-mmap: yes
+    tpacket-v3: yes
+
+logging:
+  outputs:
+    - eve-log:
+        enabled: yes
+        filetype: regular
+        filename: eve.json
+        types:
+          - alert
+          - http
+          - dns
+          - tls
+          - ssh
+        json: yes
+
+default-rule-path: /var/lib/suricata/rules
+rule-files:
+  - local.rules
+
+classification-file: /etc/suricata/classification.config
+reference-config-file: /etc/suricata/reference.config
+
+threshold-file: /etc/suricata/threshold.config
+
+# Настройки производительности
+max-pending-packets: 4096
+runmode: autofp
+autofp-scheduler: hash
