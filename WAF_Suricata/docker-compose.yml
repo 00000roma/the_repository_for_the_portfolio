@@ -15,7 +15,7 @@ services:
       - ./suricata/suricata.yaml:/etc/suricata/suricata.yaml:ro
       - ./suricata/rules:/var/lib/suricata/rules
       - suricata-logs:/var/log/suricata
-    command: -i eth0
+    command: -i enp2s0
 
   # ===== WAF (nginx + ModSecurity) =====
   nginx-modsec:
