@@ -8,7 +8,7 @@ vars:
     HTTP_PORTS: "80,8080,8000"
 
 af-packet:
-  - interface: eth0
+  - interface: enp2s0
     cluster-id: 99
     cluster-type: cluster_flow
     defrag: yes
