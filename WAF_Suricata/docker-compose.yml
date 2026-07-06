@@ -15,6 +15,11 @@ services:
       - ./suricata/suricata.yaml:/etc/suricata/suricata.yaml:ro
       - ./suricata/rules:/var/lib/suricata/rules
       - suricata-logs:/var/log/suricata
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+
     command: -i enp2s0
 
   # ===== WAF (nginx + ModSecurity) =====
@@ -62,6 +67,12 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
     networks:
       - webnet
 
@@ -70,6 +81,10 @@ services:
     image: grafana/loki:latest
     container_name: loki
     restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 512M
     volumes:
       - ./loki/loki-config.yaml:/etc/loki/loki-config.yaml:ro
     ports:
@@ -113,6 +128,10 @@ services:
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini:ro
     depends_on:
       - loki
+    deploy:
+      resources:
+        limits:
+          memory: 384M
     networks:
       - webnet
 
