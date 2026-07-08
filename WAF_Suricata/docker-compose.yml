@@ -12,7 +12,7 @@ services:
       - NET_RAW
       - SYS_NICE
     volumes:
-      - ./suricata/suricata.yaml:/etc/suricata/suricata.yaml:ro
+      - ./suricata/suricata.yaml:/etc/suricata/suricata.yaml
       - ./suricata/rules:/var/lib/suricata/rules
       - suricata-logs:/var/log/suricata
     deploy:
@@ -30,8 +30,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./nginx/modsecurity.conf:/etc/nginx/modsecurity.conf:ro
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/modsecurity.conf:/etc/nginx/modsecurity.conf
       - nginx-logs:/var/log/nginx
     depends_on:
       - app
