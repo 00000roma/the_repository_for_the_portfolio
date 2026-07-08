@@ -30,8 +30,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./nginx/modsecurity.conf:/etc/nginx/modsecurity.conf
+      - ./nginx/default.conf.template:/etc/nginx/templates/conf.d/default.conf.template:ro
+      - ./nginx/modsecurity.conf.template:/etc/nginx/templates/modsecurity.d/modsecurity.conf.template:ro
       - nginx-logs:/var/log/nginx
     depends_on:
       - app
