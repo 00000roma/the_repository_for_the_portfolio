@@ -36,7 +36,7 @@ scrape_configs:
         labels:
           job: nginx
           host: nginx-modsec
-          __path__: /var/log/nginx/*.log
+          __path__: WAF_Suricata/logs/nginx/*.log
     pipeline_stages:
       - regex:
           expression: '^(?P<remote_addr>\S+) - (?P<remote_user>\S+) \[(?P<time_local>.*?)\] "(?P<method>\S+) (?P<request_uri>\S+) (?P<http_version>\S+)" (?P<status>\d{3}) (?P<body_bytes_sent>\d+) "(?P<http_referer>.*?)" "(?P<http_user_agent>.*?)"'
