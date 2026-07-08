@@ -1,0 +1,4 @@
+2026/07/08 11:51:36 [notice] 1#1: ModSecurity-nginx v1.0.4 (rules loaded inline/local/remote: 0/921/0)
+2026/07/08 11:51:36 [notice] 1#1: libmodsecurity3 version 3.0.16
+2026/07/08 11:51:53 [notice] 1#1: ModSecurity-nginx v1.0.4 (rules loaded inline/local/remote: 0/921/0)
+2026/07/08 11:51:53 [notice] 1#1: libmodsecurity3 version 3.0.16
