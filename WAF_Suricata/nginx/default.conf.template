@@ -3,7 +3,7 @@ server {
     server_name _;
 
     modsecurity on;
-    modsecurity_rules_file /etc/nginx/modsecurity.conf;
+    modsecurity_rules_file /etc/nginx/modsecurity.d/modsecurity.conf;
 
     location / {
         proxy_pass http://app:8000;
