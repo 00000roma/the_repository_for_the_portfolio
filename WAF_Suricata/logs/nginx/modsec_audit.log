@@ -329,3 +329,81 @@ ModSecurity: Warning. Matched "Operator `Rx' with parameter `^[\d.:]+$' against 
 
 ---zrRSBPwx---Z--
 
+---VeFgHHHQ---A--
+[08/Jul/2026:12:18:35 +0000] 178351311564.993700 192.168.0.9 52575 172.18.0.7 80
+---VeFgHHHQ---B--
+POST /delete/2 HTTP/1.1
+Accept-Encoding: gzip, deflate
+Cookie: nc_sameSiteCookielax=true; nc_sameSiteCookiestrict=true; grafana_session=2fa5e6a24bf6527424793353cca40c68; grafana_session_expiry=1783513369
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Cache-Control: max-age=0
+Referer: http://192.168.0.2/
+Origin: http://192.168.0.2
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 YaBrowser/26.6.0.0 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Upgrade-Insecure-Requests: 1
+Content-Length: 0
+Connection: keep-alive
+Host: 192.168.0.2
+Accept-Language: ru,en;q=0.9
+
+---VeFgHHHQ---D--
+
+---VeFgHHHQ---E--
+<!doctype html>\x0a<html lang=en>\x0a<title>Redirecting...</title>\x0a<h1>Redirecting...</h1>\x0a<p>You should be redirected automatically to the target URL: <a href="/">/</a>. If not, click the link.\x0a
+
+---VeFgHHHQ---F--
+HTTP/1.1 302
+Server: nginx/1.30.3
+Date: Wed, 08 Jul 2026 12:18:35 GMT
+Content-Length: 189
+Content-Type: text/html; charset=utf-8
+Connection: keep-alive
+Location: /
+
+---VeFgHHHQ---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `^[\d.:]+$' against variable `REQUEST_HEADERS:Host' (Value: `192.168.0.2' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "718"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "192.168.0.2"] [severity "4"] [ver "OWASP_CRS/3.3.10"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "capec/1000/210/272"] [tag "PCI/6.5.10"] [hostname "192.168.0.2"] [uri "/delete/2"] [unique_id "178351311564.993700"] [ref "o0,11v30,11"]
+
+---VeFgHHHQ---I--
+
+---VeFgHHHQ---J--
+
+---VeFgHHHQ---Z--
+
+---utXI3Jv3---A--
+[08/Jul/2026:12:18:35 +0000] 17835131153.360368 192.168.0.9 52575 172.18.0.7 80
+---utXI3Jv3---B--
+GET / HTTP/1.1
+Host: 192.168.0.2
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 YaBrowser/26.6.0.0 Safari/537.36
+Cookie: nc_sameSiteCookielax=true; nc_sameSiteCookiestrict=true; grafana_session=2fa5e6a24bf6527424793353cca40c68; grafana_session_expiry=1783513369
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.0.2/
+Accept-Encoding: gzip, deflate
+Accept-Language: ru,en;q=0.9
+
+---utXI3Jv3---D--
+
+---utXI3Jv3---E--
+<!DOCTYPE html>\x0a<html lang="ru">\x0a<head>\x0a    <meta charset="UTF-8">\x0a    <meta name="viewport" content="width=device-width, initial-scale=1.0">\x0a    <title>\xd0\x9c\xd0\xbe\xd0\xb8 \xd0\xb7\xd0\xb0\xd0\xbc\xd0\xb5\xd1\x82\xd0\xba\xd0\xb8</title>\x0a    <!-- Bootstrap 5 CSS -->\x0a    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">\x0a    <!-- \xd0\x9a\xd0\xb0\xd1\x81\xd1\x82\xd0\xbe\xd0\xbc\xd0\xbd\xd1\x8b\xd0\xb5 \xd1\x81\xd1\x82\xd0\xb8\xd0\xbb\xd0\xb8 (\xd0\xbb\xd0\xb5\xd0\xb3\xd0\xba\xd0\xb8\xd0\xb9 \xd1\x82\xd1\x8e\xd0\xbd\xd0\xb8\xd0\xbd\xd0\xb3) -->\x0a    <style>\x0a        body {\x0a            background: #f8f9fa;\x0a            padding-top: 2rem;\x0a        }\x0a        .container {\x0a            max-width: 800px;\x0a        }\x0a        .card {\x0a            border-radius: 12px;\x0a            box-shadow: 0 4px 12px rgba(0,0,0,0.05);\x0a            transition: transform 0.1s ease;\x0a        }\x0a        .card:hover {\x0a            transform: translateY(-2px);\x0a            box-shadow: 0 8px 20px rgba(0,0,0,0.08);\x0a        }\x0a        .note-title {\x0a            font-weight: 600;\x0a            font-size: 1.2rem;\x0a            color: #1a1a2e;\x0a        }\x0a        .note-content {\x0a            color: #4a4a5a;\x0a            white-space: pre-wrap;   /* \xd1\x81\xd0\xbe\xd1\x85\xd1\x80\xd0\xb0\xd0\xbd\xd1\x8f\xd0\xb5\xd1\x82 \xd0\xbf\xd0\xb5\xd1\x80\xd0\xb5\xd0\xbd\xd0\xbe\xd1\x81\xd1\x8b \xd1\x81\xd1\x82\xd1\x80\xd0\xbe\xd0\xba */\x0a        }\x0a        .delete-btn {\x0a            transition: all 0.2s;\x0a        }\x0a        .delete-btn:hover {\x0a            transform: scale(1.05);\x0a            background-color: #dc3545;\x0a            border-color: #dc3545;\x0a        }\x0a        .header {\x0a            border-bottom: 2px solid #e9ecef;\x0a            padding-bottom: 1rem;\x0a            margin-bottom: 2rem;\x0a        }\x0a        .empty-state {\x0a            color: #6c757d;\x0a            text-align: center;\x0a            padding: 3rem 1rem;\x0a        }\x0a        .form-control:focus {\x0a            border-color: #0d6efd;\x0a            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);\x0a        }\x0a        .btn-primary {\x0a            background-color: #0d6efd;\x0a            border-color: #0d6efd;\x0a        }\x0a        .btn-primary:hover {\x0a            background-color: #0b5ed7;\x0a            border-color: #0a58ca;\x0a        }\x0a    </style>\x0a</head>\x0a<body>\x0a    <div class="container">\x0a        <div class="header d-flex justify-content-between align-items-center">\x0a            <h1 class="h2 mb-0">\xf0\x9f\x93\x9d \xd0\x9c\xd0\xbe\xd0\xb8 \xd0\xb7\xd0\xb0\xd0\xbc\xd0\xb5\xd1\x82\xd0\xba\xd0\xb8</h1>\x0a            <span class="badge bg-secondary rounded-pill" id="note-count">1</span>\x0a        </div>\x0a\x0a        <!-- \xd0\xa4\xd0\xbe\xd1\x80\xd0\xbc\xd0\xb0 \xd0\xb4\xd0\xbe\xd0\xb1\xd0\xb0\xd0\xb2\xd0\xbb\xd0\xb5\xd0\xbd\xd0\xb8\xd1\x8f \xd0\xb7\xd0\xb0\xd0\xbc\xd0\xb5\xd1\x82\xd0\xba\xd0\xb8 -->\x0a        <div class="card p-4 mb-4">\x0a            <form method="POST" action="/add">\x0a                <div class="mb-3">\x0a                    <label for="title" class="form-label fw-semibold">\xd0\x97\xd0\xb0\xd0\xb3\xd0\xbe\xd0\xbb\xd0\xbe\xd0\xb2\xd0\xbe\xd0\xba</label>\x0a                    <input type="text" class="form-control" id="title" name="title" placeholder="\xd0\x9a\xd1\x80\xd0\xb0\xd1\x82\xd0\xba\xd0\xb8\xd0\xb9 \xd0\xb7\xd0\xb0\xd0\xb3\xd0\xbe\xd0\xbb\xd0\xbe\xd0\xb2\xd0\xbe\xd0\xba" required>\x0a                </div>\x0a                <div class="mb-3">\x0a                    <label for="content" class="form-label fw-semibold">\xd0\xa2\xd0\xb5\xd0\xba\xd1\x81\xd1\x82 \xd0\xb7\xd0\xb0\xd0\xbc\xd0\xb5\xd1\x82\xd0\xba\xd0\xb8</label>\x0a                    <textarea class="form-control" id="content" name="content" rows="3" placeholder="\xd0\xa7\xd1\x82\xd0\xbe \xd1\x83 \xd0\xb2\xd0\xb0\xd1\x81 \xd0\xbd\xd0\xb0 \xd1\x83\xd0\xbc\xd0\xb5?" required></textarea>\x0a                </div>\x0a                <button type="submit" class="btn btn-primary w-100">\xe2\x9e\x95 \xd0\x94\xd0\xbe\xd0\xb1\xd0\xb0\xd0\xb2\xd0\xb8\xd1\x82\xd1\x8c \xd0\xb7\xd0\xb0\xd0\xbc\xd0\xb5\xd1\x82\xd0\xba\xd1\x83</button>\x0a            </form>\x0a        </div>\x0a\x0a        <!-- \xd0\xa1\xd0\xbf\xd0\xb8\xd1\x81\xd0\xbe\xd0\xba \xd0\xb7\xd0\xb0\xd0\xbc\xd0\xb5\xd1\x82\xd0\xbe\xd0\xba -->\x0a        \x0a            <div class="row g-3">\x0a                \x0a                <div class="col-12">\x0a                    <div class="card p-3">\x0a                        <div class="d-flex justify-content-between align-items-start">\x0a                            <div class="flex-grow-1">\x0a                                <div class="note-title">\xd0\x9f\xd0\xb5\xd1\x80\xd0\xb2\xd1\x8b\xd0\xb9 \xd0\xb7\xd0\xb0\xd0\xbf\xd1\x83\xd1\x81\xd0\xba</div>\x0a                                <div class="note-content mt-1">\xd0\x9f\xd0\xbe\xd1\x81\xd0\xbb\xd0\xb5 \xd0\xbf\xd0\xb0\xd1\x80\xd1\x83 \xd0\xb4\xd0\xb5\xd1\x81\xd1\x8f\xd1\x82\xd0\xba\xd0\xbe\xd0\xb2 \xd0\xb8\xd1\x81\xd0\xbf\xd1\x80\xd0\xb0\xd0\xb2\xd0\xbb\xd0\xb5\xd0\xbd\xd0\xb8\xd0\xb9 \xd0\xb2\xd1\x81\xd0\xb5 \xd0\xb7\xd0\xb0\xd1\x80\xd0\xb0\xd0\xb1\xd0\xbe\xd1\x82\xd0\xb0\xd0\xbb\xd0\xbe</div>\x0a                            </div>\x0a                            <form method="POST" action="/delete/1" onsubmit="return confirm('\xd0\xa3\xd0\xb4\xd0\xb0\xd0\xbb\xd0\xb8\xd1\x82\xd1\x8c \xd0\xb7\xd0\xb0\xd0\xbc\xd0\xb5\xd1\x82\xd0\xba\xd1\x83?')">\x0a                                <button type="submit" class="btn btn-outline-danger btn-sm delete-btn">\xe2\x9c\x95</button>\x0a                            </form>\x0a                        </div>\x0a                        <small class="text-muted mt-2 d-block" style="font-size:0.75rem;">ID: 1</small>\x0a                    </div>\x0a                </div>\x0a                \x0a            </div>\x0a        \x0a    </div>\x0a\x0a    <!-- Bootstrap JS (\xd0\xb4\xd0\xbb\xd1\x8f \xd0\xb8\xd0\xbd\xd1\x82\xd0\xb5\xd1\x80\xd0\xb0\xd0\xba\xd1\x82\xd0\xb8\xd0\xb2\xd0\xb0, \xd0\xbd\xd0\xbe \xd0\xb2 \xd0\xb4\xd0\xb0\xd0\xbd\xd0\xbd\xd0\xbe\xd0\xbc \xd1\x81\xd0\xbb\xd1\x83\xd1\x87\xd0\xb0\xd0\xb5 \xd0\xbd\xd0\xb5 \xd0\xbe\xd0\xb1\xd1\x8f\xd0\xb7\xd0\xb0\xd1\x82\xd0\xb5\xd0\xbb\xd0\xb5\xd0\xbd) -->\x0a    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>\x0a</body>\x0a</html>
+
+---utXI3Jv3---F--
+HTTP/1.1 200
+Server: nginx/1.30.3
+Date: Wed, 08 Jul 2026 12:18:35 GMT
+Content-Length: 4522
+Content-Type: text/html; charset=utf-8
+Connection: keep-alive
+
+---utXI3Jv3---H--
+ModSecurity: Warning. Matched "Operator `Rx' with parameter `^[\d.:]+$' against variable `REQUEST_HEADERS:Host' (Value: `192.168.0.2' ) [file "/etc/modsecurity.d/owasp-crs/rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf"] [line "718"] [id "920350"] [rev ""] [msg "Host header is a numeric IP address"] [data "192.168.0.2"] [severity "4"] [ver "OWASP_CRS/3.3.10"] [maturity "0"] [accuracy "0"] [tag "modsecurity"] [tag "application-multi"] [tag "language-multi"] [tag "platform-multi"] [tag "attack-protocol"] [tag "paranoia-level/1"] [tag "OWASP_CRS"] [tag "capec/1000/210/272"] [tag "PCI/6.5.10"] [hostname "192.168.0.2"] [uri "/"] [unique_id "17835131153.360368"] [ref "o0,11v21,11"]
+
+---utXI3Jv3---I--
+
+---utXI3Jv3---J--
+
+---utXI3Jv3---Z--
+
