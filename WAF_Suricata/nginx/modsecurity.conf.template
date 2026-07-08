@@ -1,5 +1,5 @@
 SecRuleEngine On
-SecDefaultAction "phase:1,log,auditlog,pass"
+
 SecDefaultAction "phase:2,log,auditlog,pass"
 
 SecAuditEngine RelevantOnly
