@@ -7,5 +7,3 @@ SecAuditLogParts ABIJDEFHZ
 SecAuditLogType Serial
 SecAuditLog /var/log/nginx/modsec_audit.log
 
-# Исключения для статики
-SecRule REQUEST_URI "^/static/" "id:100,phase:1,pass,nolog"
