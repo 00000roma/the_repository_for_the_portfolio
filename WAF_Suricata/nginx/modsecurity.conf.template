@@ -1,6 +1,5 @@
 SecRuleEngine On
 
-SecDefaultAction "phase:2,log,auditlog,pass"
 
 SecAuditEngine RelevantOnly
 SecAuditLogRelevantStatus "^(?:5|4(?!04))"

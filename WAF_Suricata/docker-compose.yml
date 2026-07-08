@@ -1,4 +1,4 @@
-version: '3.8'
+#version: '3.8'
 
 services:
   # ===== СЕТЕВОЙ IDS =====
@@ -32,7 +32,7 @@ services:
     volumes:
       - ./nginx/default.conf.template:/etc/nginx/templates/conf.d/default.conf.template:ro
       - ./nginx/modsecurity.conf.template:/etc/nginx/templates/modsecurity.d/modsecurity.conf.template:ro
-      - nginx-logs:/var/log/nginx
+      - ./logs/nginx:/var/log/nginx
     depends_on:
       - app
     networks:
